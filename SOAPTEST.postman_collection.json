@@ -16,7 +16,9 @@
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
-							""
+							"var jsonObject = xml2Json(responseBody);",
+							"console.log(jsonObject);",
+							"tests[\"Check Capital\"] = jsonObject['soap:Envelope']['soap:Body'] ['m:CapitalCityResponse'] ['m:CapitalCityResult'] === \"Amsterdam\";"
 						],
 						"type": "text/javascript"
 					}
