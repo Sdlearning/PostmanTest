@@ -7,6 +7,21 @@
 	"item": [
 		{
 			"name": "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f010b8bc-fe73-4974-b958-67074262eb47",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -19,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "<Envelope xmlns=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <Body>\n        <CapitalCity xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n            <sCountryISOCode>IND</sCountryISOCode>\n        </CapitalCity>\n    </Body>\n</Envelope>",
+					"raw": "<Envelope xmlns=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <Body>\n        <CapitalCity xmlns=\"http://www.oorsprong.org/websamples.countryinfo\">\n            <sCountryISOCode>NLD</sCountryISOCode>\n        </CapitalCity>\n    </Body>\n</Envelope>",
 					"options": {
 						"raw": {
 							"language": "xml"
