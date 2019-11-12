@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "242f17c5-df48-4437-8cc6-dfe899f128f4",
+		"name": "Postman Test",
+		"description": "To test postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TestSOAP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c5451357-525a-400e-aaa2-1b390006a704",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var jsonObject = xml2Json(responseBody);\r",
+							"console.log(jsonObject);\r",
+							"tests[\"Check Response\"] = jsonObject['s:Envelope']['s:Body'].PolicyEndProcessResponse.ReplyMessages.Replymessage_Web.Status === \"F\";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"auth": {
+					"type": "ntlm",
+					"ntlm": [
+						{
+							"key": "username",
+							"value": "9322110",
+							"type": "string"
+						},
+						{
+							"key": "domain",
+							"value": "INS",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "India@12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "\"http://Insurer/SoldProductIL/PolicyEndPolicyEndProcessRequest\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:pol=\"http://Insurer/SoldProductIL/PolicyEnd\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <pol:PolicyEndProcess>\r\n         <!--Optional:-->\r\n         <pol:ApprovalIndicator>N</pol:ApprovalIndicator>\r\n         <!--Optional:-->\r\n         <pol:CaseType>DeathClaimValue</pol:CaseType>\r\n         <!--Optional:-->\r\n         <pol:IgnoreWarningIndicator>J</pol:IgnoreWarningIndicator>\r\n         <pol:MutationDate>01092019</pol:MutationDate>\r\n         <pol:PolicyHolderPersonID>9690512</pol:PolicyHolderPersonID>\r\n         <pol:PolicyNumber>2000104311</pol:PolicyNumber>\r\n         <!--Optional:-->\r\n         <pol:UserCode>9322110</pol:UserCode>\r\n      </pol:PolicyEndProcess>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://lion-acc.ins.local/ASSIST_WSP/PolicyEnd.svc",
+					"protocol": "https",
+					"host": [
+						"lion-acc",
+						"ins",
+						"local"
+					],
+					"path": [
+						"ASSIST_WSP",
+						"PolicyEnd.svc"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
